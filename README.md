@@ -1,4 +1,5 @@
 Visa Slot Alert Tracker – The Flying Panda
+
 📌 Overview : This project is a mini internal tool built to help track visa slot alerts for different locations and visa types.
 It allows internal teams to create, view, update, and manage visa alerts in a simple and efficient way.The focus of this assignment is clarity, structure, and realism, rather than excessive features or complex UI.
 
