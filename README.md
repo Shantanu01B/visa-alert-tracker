@@ -91,6 +91,9 @@ The `GET /alerts` endpoint supports query filters:
 
 ---
 
+Understood. Here is the second half of your content, starting from the Setup Instructions through to the End, formatted cleanly for your README:
+
+Markdown
 ### Setup Instructions
 
 #### Step 1: Clone Repository
@@ -103,10 +106,9 @@ cd backend
 npm install
 Create a .env file inside backend:
 
+Code snippet
 PORT=5000
-
 MONGO_URI=your_mongodb_connection_string
-
 Run backend: npm run dev
 
 Backend URL: http://localhost:5000
@@ -116,53 +118,38 @@ Bash
 cd frontend
 npm install
 npm run dev
-Create a .env file inside frontend: VITE_API_URL=http://localhost:5000/alerts
+Create a .env file inside frontend: `env VITE_API_URL=http://localhost:5000/alerts
 
 Frontend URL: http://localhost:5173
 
 Deployment
-Backend deployed on Render
-
-Frontend deployed on Vercel
-
-Database hosted on MongoDB Atlas
-
+Backend: Deployed on Render
+Frontend: Deployed on Vercel
+Database: Hosted on MongoDB Atlas
 Environment variables are used for configuration in production.
 
 Design Decisions
-Kept backend structure simple while separating concerns (routes, controllers, models, middleware)
-
-MongoDB chosen for realistic persistence instead of in-memory storage
-
-UI kept minimal to reflect a real internal tool
-
-Avoided overengineering to maintain clarity and maintainability
-
-Deployment included to demonstrate end-to-end ownership
+Kept backend structure simple while separating concerns (routes, controllers, models, middleware).
+MongoDB is chosen for realistic persistence instead of in-memory storage.
+UI kept minimal to reflect a real internal tool.
+Avoided overengineering to maintain clarity and maintainability.
+Deployment included to demonstrate end-to-end ownership.
 
 Improvements for Production
 If this system were to be used in production, the following improvements would be made:
-
-Authentication and role-based access control
-
-Pagination and sorting for large datasets
-
-Schema-based validation (e.g., Joi/Zod)
-
-Better logging and monitoring
-
-Security enhancements (rate limiting, sanitization)
-
-Automated tests
+Authentication and role-based access control.
+Pagination and sorting for large datasets.
+Schema-based validation (e.g., Joi/Zod).
+Better logging and monitoring.
+Security enhancements (rate limiting, sanitization).
+Automated tests.
 
 AI Usage
-AI was used for boilerplate guidance, debugging assistance, and structural suggestions
-
-Core logic, architecture, feature selection, and trade-off decisions were made manually
-
-Focus remained on understanding requirements rather than generating features blindly
+AI was used for boilerplate guidance, debugging assistance, and structural suggestions.
+Core logic, architecture, feature selection, and trade-off decisions were made manually.
+Focus remained on understanding requirements rather than generating features blindly.
 
 Assignment Status
-All required features and optional enhancements have been implemented according to the assignment guidelines.
+All required features and optional enhancements have been implemented in accordance with the assignment guidelines.
 
 — Built for The Flying Panda 💭 Dream. Soar. Explore.
