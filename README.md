@@ -1,160 +1,100 @@
-Visa Slot Alert Tracker – The Flying Panda
+# 🐼 Visa Slot Alert Tracker – The Flying Panda
 
-Project Overview: This project is a mini internal tool built to help The Flying Panda track visa slot alerts.
-It allows internal teams to create, view, update, and delete visa alerts for different countries, cities, and visa types.The project focuses on clarity, structure, and realism, as required in the assignment.
+An internal operations tool designed to help **The Flying Panda** team track and manage visa slot alerts efficiently. This project focuses on clarity, structural integrity, and real-world applicability.
 
-Tech Stack
+---
 
-Backend
-Node.js
-Express.js
-MongoDB (Mongoose)
+## 📖 Project Overview
+This mini-tool allows internal teams to perform full CRUD operations on visa alerts across different countries and visa categories. It is built to simulate a professional internal environment with a focus on functional design and reliable data persistence.
 
-Frontend
-React (Vite)
-Axios
+### Key Features
+- **CRUD Operations:** Create, view, update, and delete visa alerts.
+- **Dynamic Filtering:** Filter alerts by country and status via API query parameters.
+- **Status Management:** Real-time updates for alert statuses (Active, Booked, Expired).
+- **Custom Middleware:** Includes a request logger and centralized error handling.
 
-Deployment
-Backend: Render
-Frontend: Vercel
-Database: MongoDB Atlas
+---
 
-Data Model
+## 🛠 Tech Stack
 
-Each visa alert contains the following fields:
-id
-country
-city
+**Backend:** Node.js, Express.js, MongoDB (Mongoose)  
+**Frontend:** React (Vite), Axios  
+**Deployment:** Render (Backend), Vercel (Frontend), MongoDB Atlas (Database)
 
-visaType
-Tourist
-Business
-Student
+---
 
-status
-Active
-Booked
-Expired
+## 📂 Data Model
+Each visa alert document contains:
+- `id`: Unique Identifier
+- `country`: String (Required)
+- `city`: String (Required)
+- `visaType`: Enum [Tourist, Business, Student]
+- `status`: Enum [Active, Booked, Expired]
+- `createdAt`: Timestamp
 
-createdAt
+---
 
-Backend Implementation
-API Routes
-Method	Endpoint	Description
-GET	/alerts	Fetch all visa alerts
-POST	/alerts	Create a new visa alert
-PUT	/alerts/:id	Update an alert’s status
-DELETE	/alerts/:id	Delete an alert
+## 🔌 API Documentation
 
-Query Filters
+### Endpoints
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **GET** | `/alerts` | Fetch all alerts (Supports `country` & `status` filters) |
+| **POST** | `/alerts` | Create a new visa alert |
+| **PUT** | `/alerts/:id` | Update an alert’s status |
+| **DELETE** | `/alerts/:id` | Delete an alert |
 
-The GET /alerts endpoint supports query filters:
-country
-status
+**Example Query:** `GET /alerts?country=India&status=Active`
 
-Example:
-GET /alerts?country=India&status=Active
+---
 
-Middleware
-Custom Logger Middleware
-Logs the request method and URL for every incoming request.
+## 🚀 Setup Instructions
 
-Validation
-Required fields (country, city, visaType) are validated before creating alerts.
-Allowed values for visaType and status are enforced.
-Invalid requests return appropriate HTTP error responses.
-
-Error Handling
-Centralized error handling middleware is implemented.
-
-Proper HTTP status codes are returned:
-200 – Success
-201 – Resource created
-204 – Resource deleted
-400 – Bad request
-404 – Resource not found
-500 – Server error
-
-Data Storage
-MongoDB is used for persistent storage.
-Mongoose handles schema definition and database interaction.
-
-Frontend Implementation
-Features
-Form to create new visa alerts
-Table view to display all alerts
-Button to update alert status
-Button to delete alerts
-Filter alerts by country and status
-Frontend communicates only with its own backend APIs
-
-UI Design
-UI is intentionally simple and functional
-Styled to resemble an internal operations tool
-No unnecessary animations or complex styling
-
-Setup Instructions
-Step 1: Clone Repository
-git clone https://github.com/Shantanu01B/visa-alert-tracker.git
+### Step 1: Clone Repository
+```bash
+git clone [https://github.com/Shantanu01B/visa-alert-tracker.git](https://github.com/Shantanu01B/visa-alert-tracker.git)
 cd visa-alert-tracker
-
 Step 2: Backend Setup
+Bash
 cd backend
 npm install
+Create a .env file in the backend directory:
 
-
-Create a .env file inside backend:
-
+Code snippet
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
-
-
-Run backend: npm run dev
-
-
-Backend URL: http://localhost:5000
+Run the server: npm run dev (Runs at http://localhost:5000)
 
 Step 3: Frontend Setup
-cd frontend
+Bash
+cd ../frontend
 npm install
-npm run dev
+Create a .env file in the frontend directory:
 
+Code snippet
+VITE_API_URL=http://localhost:5000/alerts
+Run the client: npm run dev (Runs at http://localhost:5173)
 
-Create a .env file inside frontend: VITE_API_URL=http://localhost:5000/alerts
+🧠 Design Decisions & Improvements
+Architecture
+Separation of Concerns: Distinct folders for routes, controllers, models, and middleware.
 
+Persistence: Used MongoDB Atlas to ensure data remains consistent across sessions.
 
-Frontend URL: http://localhost:5173
+Minimalist UI: Focused on high-utility design for internal operations rather than heavy styling.
 
-Deployment
-Backend deployed on Render
-Frontend deployed on Vercel
-Database hosted on MongoDB Atlas
-Environment variables are used for configuration in production.
+Production Roadmap
+[ ] Implement Authentication & RBAC (Role-Based Access Control).
 
-Design Decisions
-Kept backend structure simple while separating concerns (routes, controllers, models, middleware)
-MongoDB chosen for realistic persistence instead of in-memory storage
-UI kept minimal to reflect a real internal tool
-Avoided overengineering to maintain clarity and maintainability
-Deployment included to demonstrate end-to-end ownership
+[ ] Add Pagination and sorting for scalability.
 
-Improvements for Production
+[ ] Integrate Schema Validation (Zod or Joi).
 
-If this system were to be used in production, the following improvements would be made:
-Authentication and role-based access control
-Pagination and sorting for large datasets
-Schema-based validation (e.g., Joi/Zod)
-Better logging and monitoring
-Security enhancements (rate limiting, sanitization)
-Automated tests
+[ ] Enhanced security (Rate limiting & input sanitization).
 
-AI Usage
-AI was used for boilerplate guidance, debugging assistance, and structural suggestions
-Core logic, architecture, feature selection, and trade-off decisions were made manually
-Focus remained on understanding requirements rather than generating features blindly
+🤖 AI Usage Disclosure
+AI was utilized for boilerplate guidance, debugging, and structural suggestions. All core logic, architectural decisions, and feature selections were made manually to meet project requirements.
 
- Assignment Status
-All required features and optional enhancements have been implemented according to the assignment guidelines.
+✅ Assignment Status: All required features and optional enhancements completed.
 
-— Built for The Flying Panda
-💭 Dream. Soar. Explore.
+Built for The Flying Panda 💭 Dream. Soar. Explore.
