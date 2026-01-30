@@ -1,56 +1,99 @@
-# 🐼 Visa Slot Alert Tracker – The Flying Panda
+# Visa Slot Alert Tracker – The Flying Panda
 
-An internal operations tool designed to help **The Flying Panda** team track and manage visa slot alerts efficiently. This project focuses on clarity, structural integrity, and real-world applicability.
-
----
-
-## 📖 Project Overview
-This mini-tool allows internal teams to perform full CRUD operations on visa alerts across different countries and visa categories. It is built to simulate a professional internal environment with a focus on functional design and reliable data persistence.
-
-### Key Features
-- **CRUD Operations:** Create, view, update, and delete visa alerts.
-- **Dynamic Filtering:** Filter alerts by country and status via API query parameters.
-- **Status Management:** Real-time updates for alert statuses (Active, Booked, Expired).
-- **Custom Middleware:** Includes a request logger and centralized error handling.
+### Project Overview
+This project is a mini internal tool built to help The Flying Panda track visa slot alerts. It allows internal teams to create, view, update, and delete visa alerts for different countries, cities, and visa types. The project focuses on clarity, structure, and realism, as required in the assignment.
 
 ---
 
-## 🛠 Tech Stack
+### Tech Stack
 
-**Backend:** Node.js, Express.js, MongoDB (Mongoose)  
-**Frontend:** React (Vite), Axios  
-**Deployment:** Render (Backend), Vercel (Frontend), MongoDB Atlas (Database)
+**Backend**
+* Node.js
+* Express.js
+* MongoDB (Mongoose)
+
+**Frontend**
+* React (Vite)
+* Axios
+
+**Deployment**
+* Backend: Render
+* Frontend: Vercel
+* Database: MongoDB Atlas
 
 ---
 
-## 📂 Data Model
-Each visa alert document contains:
-- `id`: Unique Identifier
-- `country`: String (Required)
-- `city`: String (Required)
-- `visaType`: Enum [Tourist, Business, Student]
-- `status`: Enum [Active, Booked, Expired]
-- `createdAt`: Timestamp
+### Data Model
+Each visa alert contains the following fields:
+* **id**
+* **country**
+* **city**
+* **visaType**: Tourist, Business, Student
+* **status**: Active, Booked, Expired
+* **createdAt**
 
 ---
 
-## 🔌 API Documentation
+### Backend Implementation
 
-### Endpoints
+#### API Routes
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| **GET** | `/alerts` | Fetch all alerts (Supports `country` & `status` filters) |
-| **POST** | `/alerts` | Create a new visa alert |
-| **PUT** | `/alerts/:id` | Update an alert’s status |
-| **DELETE** | `/alerts/:id` | Delete an alert |
+| GET | /alerts | Fetch all visa alerts |
+| POST | /alerts | Create a new visa alert |
+| PUT | /alerts/:id | Update an alert’s status |
+| DELETE | /alerts/:id | Delete an alert |
 
-**Example Query:** `GET /alerts?country=India&status=Active`
+#### Query Filters
+The `GET /alerts` endpoint supports query filters:
+* country
+* status
+* **Example:** `GET /alerts?country=India&status=Active`
+
+#### Middleware
+* **Custom Logger Middleware:** Logs the request method and URL for every incoming request.
+
+#### Validation
+* Required fields (country, city, visaType) are validated before creating alerts.
+* Allowed values for visaType and status are enforced.
+* Invalid requests return appropriate HTTP error responses.
+
+#### Error Handling
+* Centralized error handling middleware is implemented.
+* Proper HTTP status codes are returned:
+    * **200** – Success
+    * **201** – Resource created
+    * **204** – Resource deleted
+    * **400** – Bad request
+    * **404** – Resource not found
+    * **500** – Server error
+
+#### Data Storage
+* MongoDB is used for persistent storage.
+* Mongoose handles schema definition and database interaction.
 
 ---
 
-## 🚀 Setup Instructions
+### Frontend Implementation
 
-### Step 1: Clone Repository
+#### Features
+* Form to create new visa alerts
+* Table view to display all alerts
+* Button to update alert status
+* Button to delete alerts
+* Filter alerts by country and status
+* Frontend communicates only with its own backend APIs
+
+#### UI Design
+* UI is intentionally simple and functional
+* Styled to resemble an internal operations tool
+* No unnecessary animations or complex styling
+
+---
+
+### Setup Instructions
+
+#### Step 1: Clone Repository
 ```bash
 git clone [https://github.com/Shantanu01B/visa-alert-tracker.git](https://github.com/Shantanu01B/visa-alert-tracker.git)
 cd visa-alert-tracker
@@ -58,43 +101,68 @@ Step 2: Backend Setup
 Bash
 cd backend
 npm install
-Create a .env file in the backend directory:
+Create a .env file inside backend:
 
-Code snippet
 PORT=5000
+
 MONGO_URI=your_mongodb_connection_string
-Run the server: npm run dev (Runs at http://localhost:5000)
+
+Run backend: npm run dev
+
+Backend URL: http://localhost:5000
 
 Step 3: Frontend Setup
 Bash
-cd ../frontend
+cd frontend
 npm install
-Create a .env file in the frontend directory:
+npm run dev
+Create a .env file inside frontend: VITE_API_URL=http://localhost:5000/alerts
 
-Code snippet
-VITE_API_URL=http://localhost:5000/alerts
-Run the client: npm run dev (Runs at http://localhost:5173)
+Frontend URL: http://localhost:5173
 
-🧠 Design Decisions & Improvements
-Architecture
-Separation of Concerns: Distinct folders for routes, controllers, models, and middleware.
+Deployment
+Backend deployed on Render
 
-Persistence: Used MongoDB Atlas to ensure data remains consistent across sessions.
+Frontend deployed on Vercel
 
-Minimalist UI: Focused on high-utility design for internal operations rather than heavy styling.
+Database hosted on MongoDB Atlas
 
-Production Roadmap
-[ ] Implement Authentication & RBAC (Role-Based Access Control).
+Environment variables are used for configuration in production.
 
-[ ] Add Pagination and sorting for scalability.
+Design Decisions
+Kept backend structure simple while separating concerns (routes, controllers, models, middleware)
 
-[ ] Integrate Schema Validation (Zod or Joi).
+MongoDB chosen for realistic persistence instead of in-memory storage
 
-[ ] Enhanced security (Rate limiting & input sanitization).
+UI kept minimal to reflect a real internal tool
 
-🤖 AI Usage Disclosure
-AI was utilized for boilerplate guidance, debugging, and structural suggestions. All core logic, architectural decisions, and feature selections were made manually to meet project requirements.
+Avoided overengineering to maintain clarity and maintainability
 
-✅ Assignment Status: All required features and optional enhancements completed.
+Deployment included to demonstrate end-to-end ownership
 
-Built for The Flying Panda 💭 Dream. Soar. Explore.
+Improvements for Production
+If this system were to be used in production, the following improvements would be made:
+
+Authentication and role-based access control
+
+Pagination and sorting for large datasets
+
+Schema-based validation (e.g., Joi/Zod)
+
+Better logging and monitoring
+
+Security enhancements (rate limiting, sanitization)
+
+Automated tests
+
+AI Usage
+AI was used for boilerplate guidance, debugging assistance, and structural suggestions
+
+Core logic, architecture, feature selection, and trade-off decisions were made manually
+
+Focus remained on understanding requirements rather than generating features blindly
+
+Assignment Status
+All required features and optional enhancements have been implemented according to the assignment guidelines.
+
+— Built for The Flying Panda 💭 Dream. Soar. Explore.
