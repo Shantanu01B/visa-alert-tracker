@@ -89,11 +89,14 @@ The `GET /alerts` endpoint supports query filters:
 * Styled to resemble an internal operations tool
 * No unnecessary animations or complex styling
 
----
+## Live Demo / Deployment
 
-Understood. Here is the second half of your content, starting from the Setup Instructions through to the End, formatted cleanly for your README:
+- Frontend (Vercel): https://visa-alert-tracker.vercel.app
+- Backend API (Render): https://visa-alert-tracker.onrender.com/alerts
 
-Markdown
+Note: The backend is hosted on Render’s free tier and may take a few seconds to wake up on first request.
+
+
 ### Setup Instructions
 
 #### Step 1: Clone Repository
