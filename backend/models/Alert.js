@@ -1,8 +1,16 @@
 const mongoose = require("mongoose");
 
 const alertSchema = new mongoose.Schema({
-    country: { type: String, required: true },
-    city: { type: String, required: true },
+    country: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    city: {
+        type: String,
+        required: true,
+        trim: true
+    },
     visaType: {
         type: String,
         enum: ["Tourist", "Business", "Student"],
