@@ -1,109 +1,160 @@
 Visa Slot Alert Tracker – The Flying Panda
 
-📌 Overview : This project is a mini internal tool built to help track visa slot alerts for different locations and visa types.
-It allows internal teams to create, view, update, and manage visa alerts in a simple and efficient way.The focus of this assignment is clarity, structure, and realism, rather than excessive features or complex UI.
+Project Overview: This project is a mini internal tool built to help The Flying Panda track visa slot alerts.
+It allows internal teams to create, view, update, and delete visa alerts for different countries, cities, and visa types.The project focuses on clarity, structure, and realism, as required in the assignment.
 
-🛠 Tech Stack
+Tech Stack
+
+Backend
+Node.js
+Express.js
+MongoDB (Mongoose)
 
 Frontend
 React (Vite)
 Axios
 
-Backend
-Node.js
-Express.js
+Deployment
+Backend: Render
+Frontend: Vercel
+Database: MongoDB Atlas
 
-MongoDB (Mongoose)
+Data Model
 
-✨ Features
-Create visa slot alerts (Country, City, Visa Type)
-View all alerts in a tabular format
-Update alert status (Active → Booked)
-Delete alerts
-REST APIs with proper HTTP status codes
-Custom middleware for request logging
-Centralized error handling
-Clean and minimal internal-tool UI
-Frontend consumes its own backend APIs
-
-📂 Data Model (Alert)
-
-Each visa alert contains:
+Each visa alert contains the following fields:
 id
 country
 city
-visaType (Tourist / Business / Student)
-status (Active / Booked / Expired)
+
+visaType
+Tourist
+Business
+Student
+
+status
+Active
+Booked
+Expired
+
 createdAt
 
-⚙️ Setup Instructions
-1️⃣ Clone the Repository
-git clone <your-github-repo-link>
+Backend Implementation
+API Routes
+Method	Endpoint	Description
+GET	/alerts	Fetch all visa alerts
+POST	/alerts	Create a new visa alert
+PUT	/alerts/:id	Update an alert’s status
+DELETE	/alerts/:id	Delete an alert
+
+Query Filters
+
+The GET /alerts endpoint supports query filters:
+country
+status
+
+Example:
+GET /alerts?country=India&status=Active
+
+Middleware
+Custom Logger Middleware
+Logs the request method and URL for every incoming request.
+
+Validation
+Required fields (country, city, visaType) are validated before creating alerts.
+Allowed values for visaType and status are enforced.
+Invalid requests return appropriate HTTP error responses.
+
+Error Handling
+Centralized error handling middleware is implemented.
+
+Proper HTTP status codes are returned:
+200 – Success
+201 – Resource created
+204 – Resource deleted
+400 – Bad request
+404 – Resource not found
+500 – Server error
+
+Data Storage
+MongoDB is used for persistent storage.
+Mongoose handles schema definition and database interaction.
+
+Frontend Implementation
+Features
+Form to create new visa alerts
+Table view to display all alerts
+Button to update alert status
+Button to delete alerts
+Filter alerts by country and status
+Frontend communicates only with its own backend APIs
+
+UI Design
+UI is intentionally simple and functional
+Styled to resemble an internal operations tool
+No unnecessary animations or complex styling
+
+Setup Instructions
+Step 1: Clone Repository
+git clone https://github.com/Shantanu01B/visa-alert-tracker.git
 cd visa-alert-tracker
 
-2️⃣ Backend Setup
+Step 2: Backend Setup
 cd backend
 npm install
 
 
-Create a .env file in the backend folder:
+Create a .env file inside backend:
 
 PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/visaAlerts
+MONGO_URI=your_mongodb_connection_string
 
 
-Run the backend: npm run dev
+Run backend: npm run dev
 
 
-Backend will run on: http://localhost:5000
+Backend URL: http://localhost:5000
 
-3️⃣ Frontend Setup
+Step 3: Frontend Setup
 cd frontend
 npm install
 npm run dev
 
 
-Frontend will run on: http://localhost:5173
+Create a .env file inside frontend: VITE_API_URL=http://localhost:5000/alerts
 
-🔗 API Endpoints
-Method	Endpoint	Description
-GET	/alerts	Get all alerts
-POST	/alerts	Create new alert
-PUT	/alerts/:id	Update alert status
-DELETE	/alerts/:id	Delete alert
 
-Query Filters
-?country=India
-?status=Active
+Frontend URL: http://localhost:5173
 
-🧠 Design Decisions
-Used single server file for simplicity since this is a small internal tool
-Followed a modular structure (routes, controllers, models, middleware)
-MongoDB chosen for realistic data persistence
-UI intentionally kept minimal and functional, reflecting an internal dashboard rather than a consumer app
+Deployment
+Backend deployed on Render
+Frontend deployed on Vercel
+Database hosted on MongoDB Atlas
+Environment variables are used for configuration in production.
 
-Inline CSS used to avoid unnecessary styling complexity
+Design Decisions
+Kept backend structure simple while separating concerns (routes, controllers, models, middleware)
+MongoDB chosen for realistic persistence instead of in-memory storage
+UI kept minimal to reflect a real internal tool
+Avoided overengineering to maintain clarity and maintainability
+Deployment included to demonstrate end-to-end ownership
 
-🚀 Improvements for Production
-If this were a production system, I would add:
-Authentication & role-based access
-Input validation using Joi/Zod
-Pagination and sorting
-Search and filter UI
-Better logging (Winston)
-Environment-based configs
-Deployment (Docker + cloud hosting)
+Improvements for Production
 
-🤖 AI Usage
-AI was used for boilerplate guidance, debugging assistance, and code structure suggestions
-Core logic, architecture decisions, UI restraint, and feature selection were human-driven
-Focus remained on understanding requirements rather than blindly generating code
+If this system were to be used in production, the following improvements would be made:
+Authentication and role-based access control
+Pagination and sorting for large datasets
+Schema-based validation (e.g., Joi/Zod)
+Better logging and monitoring
+Security enhancements (rate limiting, sanitization)
+Automated tests
 
-✅ Status
+AI Usage
+AI was used for boilerplate guidance, debugging assistance, and structural suggestions
+Core logic, architecture, feature selection, and trade-off decisions were made manually
+Focus remained on understanding requirements rather than generating features blindly
 
-✔ Assignment requirements fully implemented
-✔ APIs and frontend integrated
-✔ Clean, readable, and realistic internal tool
+ Assignment Status
+All required features and optional enhancements have been implemented according to the assignment guidelines.
 
-💭 Dream. Soar. Explore.
 — Built for The Flying Panda
+💭 Dream. Soar. Explore.
